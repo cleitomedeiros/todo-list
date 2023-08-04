@@ -1,12 +1,46 @@
-
-/* 
-
-    You can write your own styles here...
+.App {
     
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+    text-align: center;
+    margin-top: 50px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  input {
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  button {
+    padding: 5px 10px;
+    color: rgb(245, 73, 73);
+    border: none;
+    cursor: pointer;
+  }
+  
+  ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+  }
 
-*/
+  .rounded-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px; 
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
