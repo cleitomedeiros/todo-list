@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState('');
+  const [newTask, setNewTask] = useState("");
 
   const handleAddTask = () => {
-    if (newTask.trim() !== '') {
+    if (newTask.trim() !== "") {
       setTasks([...tasks, newTask]);
-      setNewTask('');
+      setNewTask("");
     }
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleAddTask(); 
+    if (e.key === "Enter") {
+      handleAddTask();
     }
   };
 
@@ -23,25 +23,27 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>Todo List</h1>
-      <div>
-        <input
-          type="text"
-          placeholder="Nueva Tarea"
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-          onKeyPress={handleKeyPress} 
-        />
+    <div className="contenedor-principal">
+      <div className="contenedor-todo">
+        <h1>Todo List</h1>
+        <div>
+          <input
+            type="text"
+            placeholder="Nueva Tarea"
+            value={newTask}
+            onChange={(e) => setNewTask(e.target.value)}
+            onKeyPress={handleKeyPress}
+          />
+        </div>
+        <ul>
+          {tasks.map((task, index) => (
+            <li key={index}>
+              {task}
+              <button onClick={() => handleDeleteTask(index)}>X</button>
+            </li>
+          ))}
+        </ul>
       </div>
-      <ul>
-        {tasks.map((task, index) => (
-          <li key={index}>
-            {task}
-            <button onClick={() => handleDeleteTask(index)}>X</button>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
