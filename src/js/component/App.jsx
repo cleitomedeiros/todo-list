@@ -3,6 +3,7 @@ import React, { useState } from "react";
 function App() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const handleAddTask = () => {
     if (newTask.trim() !== "") {
@@ -25,24 +26,34 @@ function App() {
   return (
     <div className="contenedor-principal">
       <div className="contenedor-todo">
-        <h1>Todo List</h1>
+        <h1>Todo List </h1>
         <div>
-          <input
-            type="text"
-            placeholder="Nueva Tarea"
-            value={newTask}
-            onChange={(e) => setNewTask(e.target.value)}
-            onKeyPress={handleKeyPress}
-          />
+          <div className="efecto">
+            {" "}
+            <input
+              type="text"
+              placeholder="Nueva Tarea"
+              value={newTask}
+              onChange={(e) => setNewTask(e.target.value)}
+              onKeyPress={handleKeyPress}
+            />
+            <ul>
+              {tasks.map((task, index) => (
+                <li
+                  key={index}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  {task}
+                  {hoveredIndex === index && (
+                    <button onClick={() => handleDeleteTask(index)}>X</button>
+                  )}
+                </li>
+              ))}
+              <span>{tasks.length} item</span>
+            </ul>
+          </div>
         </div>
-        <ul>
-          {tasks.map((task, index) => (
-            <li key={index}>
-              {task}
-              <button onClick={() => handleDeleteTask(index)}>X</button>
-            </li>
-          ))}
-        </ul>
       </div>
     </div>
   );
